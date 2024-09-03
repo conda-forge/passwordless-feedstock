@@ -1,5 +1,5 @@
 {% set name = "passwordless" %}
-{% set version = "1.0.1" %}
+{% set version = "1.0.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a17f4fd7b8f8a32981f9abf8870dd19130e4d1f9c82337e87f624a894d1c9efa
+  sha256: 4bbf2e8b9e226daa127735cc127a7e30e5efc459d9f7770f00af44de85164885
 
 build:
   number: 0
