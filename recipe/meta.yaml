@@ -16,11 +16,11 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python >=3.9
     - poetry-core
     - pip
   run:
-    - python >=3.8
+    - python >=3.9
     - requests >=2.0,<3.0
     - marshmallow >=3.0,<4.0
     - python-dateutil >=2.0,<3.0
