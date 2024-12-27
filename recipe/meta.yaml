@@ -1,26 +1,29 @@
 {% set name = "passwordless" %}
 {% set version = "2.0.0" %}
+{% set pyproject = load_file_data('pyproject.toml') %}
+{% set requires_python = pyproject.get('tool', {}).get('poetry', {}).get('dependencies', {}).get('python', '3.9') %}
+{% set python_min = requires_python|replace('>=', '') %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 71b7ceca5a1af1dced4d983a3fea3e1c11d9b5b8d0696e6571ed92c2b4c49247
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - poetry-core
     - pip
   run:
-    - python >=3.9
+    - python >={{ python_min }}
     - requests >=2.0,<3.0
     - marshmallow >=3.0,<4.0
     - python-dateutil >=2.0,<3.0
@@ -28,6 +31,7 @@ requirements:
 test:
   requires:
     - pip
+    - python {{ python_min }}
   imports:
     - passwordless
   commands:
