@@ -1,5 +1,8 @@
 {% set name = "passwordless" %}
 {% set version = "2.0.0" %}
+{% set pyproject = load_file_data('pyproject.toml') %}
+{% set requires_python = pyproject.get('tool', {}).get('poetry', {}).get('dependencies', {}).get('python', '3.9') %}
+{% set python_min = requires_python|replace('>=', '') %}
 
 package:
   name: {{ name|lower }}
